@@ -1,0 +1,8 @@
+.image-wrapper {
+  position: relative;
+}
+
+.face-item {
+  position: absolute;
+  border: 3px solid red;
+}
