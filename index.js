@@ -27,14 +27,12 @@ function processImage() {
     body: JSON.stringify({ url: input })
   }).then(res => res.json())
     .then(res => {
-      const faceCount = res.length;
-      
       // Reset
-      document.querySelector('#information').innerHTML = `Có ${faceCount} người`;
+      document.querySelector('#information').innerHTML = `Có ${res.length} người`;
       
-      [...Array(faceCount).keys()].forEach(index => {
-        const { top, left, height, width } = res[index].faceRectangle;
-        const { age, emotion: { anger, happiness, sadness, neutral } } = res[index].faceAttributes;
+      res.forEach((face, index) => {
+        const { top, left, height, width } = face.faceRectangle;
+        const { age, emotion: { anger, happiness, sadness, neutral } } = face.faceAttributes;
 
         // Vẽ ảnh
         const square = document.createElement('div');
