@@ -2,6 +2,12 @@
   function parseUrlParams(urlParams) {
     return Object.entries(urlParams).map(pair => pair.join('=')).join('&');
   }
+
+  function removeOldBox() {
+    document.querySelectorAll('.face-item').forEach(box => {
+      box.parentElement.removeChild(box);
+    });
+  }
   
   function processImage() {
     const params = {
@@ -17,6 +23,8 @@
   
     // Show image
     document.querySelector('#image').src = input;
+    
+    removeOldBox();
   
     fetch(`${uriBase}?${parseUrlParams(params)}`, {
       method: 'POST',
