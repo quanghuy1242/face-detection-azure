@@ -34,7 +34,7 @@ function processImage() {
       
       [...Array(faceCount).keys()].forEach(index => {
         const { top, left, height, width } = res[index].faceRectangle;
-        const { age, emotion } = res[index].faceAttributes;
+        const { age, emotion: { anger, happiness, sadness, neutral } } = res[index].faceAttributes;
 
         // Vẽ ảnh
         const square = document.createElement('div');
@@ -51,10 +51,10 @@ function processImage() {
           <div>Guong Mat so ${index + 1}<div>
           <ul>
             <li>Age: ${age}</li>
-            <li>Anger: ${emotion.anger}</li>
-            <li>Happiness: ${emotion.happiness}</li>
-            <li>Sadness: ${emotion.sadness}</li>
-            <li>Neutral: ${emotion.neutral}</li>
+            <li>Anger: ${anger}</li>
+            <li>Happiness: ${happiness}</li>
+            <li>Sadness: ${sadness}</li>
+            <li>Neutral: ${neutral}</li>
           </ul>
         `;
         document.querySelector('#information').appendChild(p);
