@@ -47,7 +47,7 @@
           // Thông tin
           const p = document.createElement('p');
           p.innerHTML = `
-            <div>Guong Mat so ${index + 1}<div>
+            <div>Gương mặt số ${index + 1}:<div>
             <ul>
               <li>Age: ${age}</li>
               <li>Anger: ${anger}</li>
