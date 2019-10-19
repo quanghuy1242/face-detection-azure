@@ -1,8 +1,69 @@
 .image-wrapper {
   position: relative;
+  display: inline-block;
 }
 
 .face-item {
   position: absolute;
   border: 3px solid red;
+}
+
+.image {
+  max-width: 100%;
+}
+
+.content-inside {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper > :not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+input[type=text], input[type=mail],input[type=password],input[type=date] {
+	margin-bottom: 5px;
+	padding: 0px 10px 0 10px;
+	width: 258px;
+	height: 40px;
+	border: 1px solid rgb(166, 204, 198);
+	box-sizing: border-box;
+	font-size: 15px;
+	vertical-align: middle;
+	outline: none;
+	transition: 0.5s;
+}
+
+input[type=text]:focus, input[type=mail]:focus,input[type=password]:focus,input[type=date]:focus {
+	background-color: #c2dbd8;
+	border: 1px solid #398791;
+	transition: 0.5s;
+}
+
+input[type=button], input[type=submit], button {
+	border: none;
+	background-color: #a6ccc6;
+	height: 40px;
+	padding: 0 20px 0 20px;
+	vertical-align: middle;
+	margin-bottom: 5px;
+	cursor: pointer;
+	font-size: 15px;
+	transition: 0.5s;
+	outline: none;
+}
+
+input[type=button]:hover, input[type=submit]:hover, button:hover {
+	background-color: #71aca3;
+	transition: 0.5s;
 }

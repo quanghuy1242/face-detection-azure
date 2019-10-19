@@ -22,7 +22,8 @@
     if (!input) { return; }
   
     // Show image
-    document.querySelector('#image').src = input;
+    const image = document.querySelector('#image');
+    image.src = input;
     
     removeOldBox();
   
@@ -36,35 +37,35 @@
       body: JSON.stringify({ url: input })
     }).then(res => res.json())
       .then(res => {
-        // Reset
-        document.querySelector('#information').innerHTML = `Có ${res.length} người`;
-        
         res.forEach((face, index) => {
           const { top, left, height, width } = face.faceRectangle;
           const { age, emotion: { anger, happiness, sadness, neutral } } = face.faceAttributes;
   
           // Vẽ ảnh
-          const square = document.createElement('div');
+          const square = document.createElement('qh-tooltip');
           square.classList.add('face-item');
-          square.style.top = `${top}px`;
-          square.style.left = `${left}px`;
-          square.style.width = `${width}px`;
-          square.style.height = `${height}px`;
+
+          // Tính toán kích cỡ
+          square.style.top = `${((top / image.naturalHeight) * 100)}%`;
+          square.style.left = `${((left / image.naturalWidth) * 100)}%`;
+          square.style.width = `${((width / image.naturalWidth) * 100)}%`;
+          square.style.height = `${((height / image.naturalHeight) * 100)}%`;
+          
+          const inside = document.createElement('div');
+          inside.classList.add('content-inside');
+          square.appendChild(inside);
+
+          //
+          square.setAttribute('content', `
+            <li>Age: ${age}</li>
+            <li>Anger: ${anger}</li>
+            <li>Happiness: ${happiness}</li>
+            <li>Sadness: ${sadness}</li>
+            <li>Neutral: ${neutral}</li>
+          `);
+
+          // Thêm box vào div lớn
           document.querySelector('.image-wrapper').appendChild(square);
-  
-          // Thông tin
-          const p = document.createElement('p');
-          p.innerHTML = `
-            <div>Gương mặt số ${index + 1}:<div>
-            <ul>
-              <li>Age: ${age}</li>
-              <li>Anger: ${anger}</li>
-              <li>Happiness: ${happiness}</li>
-              <li>Sadness: ${sadness}</li>
-              <li>Neutral: ${neutral}</li>
-            </ul>
-          `;
-          document.querySelector('#information').appendChild(p);
         })
       })
   }
